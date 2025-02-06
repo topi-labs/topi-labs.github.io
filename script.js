@@ -10,4 +10,28 @@ function createParticles() {
     }
 }
 
-createParticles(); 
+createParticles();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const earlyAccessBtn = document.getElementById('earlyAccessBtn');
+    const signupForm = document.getElementById('signupForm');
+    
+    earlyAccessBtn.addEventListener('click', function() {
+        signupForm.classList.toggle('active');
+        if (signupForm.classList.contains('active')) {
+            earlyAccessBtn.textContent = 'Hide Form';
+        } else {
+            earlyAccessBtn.textContent = 'Get Early Access';
+        }
+    });
+
+    signupForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = signupForm.querySelector('input[type="email"]').value;
+        // Here you would typically send the email to your backend
+        alert('Thank you for your interest! We\'ll notify you when early access becomes available.');
+        signupForm.querySelector('input[type="email"]').value = '';
+        signupForm.classList.remove('active');
+        earlyAccessBtn.textContent = 'Get Early Access';
+    });
+}); 
